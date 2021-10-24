@@ -19,9 +19,9 @@ services:
       - influxdb_data:/root
     networks:
       net:
-      db:
-        aliases:
-          - influxdb
+    #  db:
+    #    aliases:
+    #      - influxdb
     # ports:
     # - "8086:8086"
     environment:
@@ -47,7 +47,7 @@ services:
     #  - "3002:3000"
     networks:
       - net
-      - db
+    #  - db
     environment:
       - TZ=Europe/Berlin
 
@@ -63,7 +63,7 @@ services:
       - telegraf_data:/etc/telegraf/
     networks:
       - net
-      - db
+     # - db
     environment:
       - TZ=Europe/Berlin
     
@@ -73,7 +73,7 @@ volumes:
   telegraf_data:
   
 networks:
-  db:
+  # db:
   net:
     external:
       name: traefik_net
