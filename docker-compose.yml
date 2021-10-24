@@ -5,7 +5,7 @@ services:
     image: "quay.io/influxdb/influxdb:v2.0.9"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.influxdb.rule=Host(`whoami.qxf.de`)"
+      - "traefik.http.routers.influxdb.rule=Host(`influx.qxf.de`)"
       - "traefik.http.routers.influxdb.entrypoints=websecure"
       - "traefik.http.routers.influxdb.tls.certresolver=myresolver"
       - "traefik.http.services.influxdb.loadbalancer.server.port=8086"
