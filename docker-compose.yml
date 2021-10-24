@@ -22,8 +22,8 @@ services:
         aliases:
           - influxdb
       net:
-    # ports:
-    #  - "8086:8086"
+    ports:
+     - "8086:8086"
     environment:
       - TZ=Europe/Berlin
 
