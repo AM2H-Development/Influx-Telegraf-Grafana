@@ -29,7 +29,7 @@ services:
 
   grafana:
     image: "grafana/grafana:latest"
-    labels:
+#    labels:
 #      - "traefik.enable=true"
 #      - "traefik.http.routers.grafana.rule=Host(`grafana.qxf.de`)"
 #      - "traefik.http.routers.grafana.entrypoints=websecure"
