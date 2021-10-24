@@ -1,7 +1,14 @@
-version: "3.7"
+version: "3.9"
+
 services:
   influxdb:
-    image: "quay.io/influxdb/influxdb:v2.0.2"
+    image: "quay.io/influxdb/influxdb:v2.0.9"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.influxdb.rule=Host(`whoami.qxf.de`)"
+      - "traefik.http.routers.influxdb.entrypoints=websecure"
+      - "traefik.http.routers.influxdb.tls.certresolver=myresolver"
+      - "traefik.http.services.influxdb.loadbalancer.server.port=8086"
     logging:
       driver: "json-file"
       options:
@@ -14,8 +21,9 @@ services:
       db:
         aliases:
           - influxdb
-    ports:
-      - "8086:8086"
+      net:
+    # ports:
+    #  - "8086:8086"
     environment:
       - TZ=Europe/Berlin
 
@@ -33,6 +41,7 @@ services:
       - "3002:3000"
     networks:
       - db
+      - net
     environment:
       - TZ=Europe/Berlin
 
@@ -48,6 +57,7 @@ services:
       - telegraf_data:/etc/telegraf/
     networks:
       - db
+      - net
     environment:
       - TZ=Europe/Berlin
     
@@ -58,3 +68,6 @@ volumes:
   
 networks:
   db:
+  net:
+    external:
+      name: traefik_net
