@@ -29,6 +29,12 @@ services:
 
   grafana:
     image: "grafana/grafana:latest"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.influxdb.rule=Host(`grafana.qxf.de`)"
+      - "traefik.http.routers.influxdb.entrypoints=websecure"
+      - "traefik.http.routers.influxdb.tls.certresolver=myresolver"
+      - "traefik.http.services.influxdb.loadbalancer.server.port=3000"
     logging:
       driver: "json-file"
       options:
@@ -37,11 +43,11 @@ services:
     restart: unless-stopped
     volumes:
       - grafana_data:/var/lib/grafana
-    ports:
-      - "3002:3000"
+    # ports:
+    #  - "3002:3000"
     networks:
-      - db
       - net
+      - db
     environment:
       - TZ=Europe/Berlin
 
