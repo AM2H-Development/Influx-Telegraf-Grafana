@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   influxdb:
-    image: "quay.io/influxdb/influxdb:v2.0.9"
+    image: "influxdb:2.1-alpine"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.influxdb.rule=Host(`influx.qxf.de`)"
@@ -30,7 +30,7 @@ services:
       - TZ=Europe/Berlin
 
   grafana:
-    image: "grafana/grafana:latest"
+    image: "grafana/grafana-oss"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.grafana.rule=Host(`grafana.qxf.de`)"
