@@ -1,6 +1,6 @@
-# influx 2.0.2 with grafana and telegraf
+# influx 2.1 with grafana-oss and telegraf
 install:
-* git clone https://github.com/AM2H-Development/influx.git
+* git clone https://github.com/AM2H-Development/Influx.git
 * cd influx
 * docker-compose up -d
 
